@@ -1,4 +1,11 @@
-# This is the README.md as part of the course project for the Coursera course: Getting and Cleaning Data offered by Jeff Leek, PhD, Roger D. Peng, PhD, Brian Caffo, PhD
+##### This is the README.md as part of the course project for the Coursera course: Getting and Cleaning Data offered by Jeff Leek, PhD, Roger D. Peng, PhD, Brian Caffo, PhD
+
+#####
+this repository contains the files:
+README.md         describing the script, conducted analysis and context of this repository
+run_analysis.R    which runs the analysis descript below
+codebook          describing the variables and values of tidy_dataset.txt
+#####
 
 The script run_analysis.R merges two datasets (test.txt and train.txt) into one.
 Adds a list of subjects and activities to the new dataset.
@@ -8,7 +15,7 @@ The activities get descriptive names instead of a number-code and the columns ar
 The dataframe is then rearranged to show the average value for each measurement for each activity for each subject.
 This rearranged and smaller dataframe is then written out into the text file: tidy_dataset.txt
 
-
+```
 data <- read.table("test/X_test.txt")
 data <- rbind(data,  read.table("train/X_train.txt"))
 activity <- read.table("test/y_test.txt")
@@ -25,3 +32,4 @@ data$subject <- as.factor(data$subject)
 library("reshape2")
 tidy <- dcast(melt(data, id.vars= c("subject", "activity")), subject + activity ~ variable , fun=mean)
 write.table(tidy, file = "tidy_dataset.txt", row.names=FALSE)
+```
